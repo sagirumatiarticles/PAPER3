@@ -266,7 +266,7 @@ decomp.m5.m6=data.frame(read.csv("TABLES/table3.csv",na="empty",skipNul = T,chec
 
 kable(format="latex",booktabs=T,caption="\\bfseries{Variance decomposition of inflation, M5 and M6}",escape=F,col.names = NULL,linesep="") %>%
 kable_styling(latex_options = c("basic","hold_position"), font_size=9,full_width=T) %>%
-  add_header_above(c(" "=1,"**2-month horizon (M5)**"=3,"2-month horizon (M6)"=3,"24-month horizon (M5)"=3,"24-month horizon (M6)"=3)) %>%
+  add_header_above(c(" "=1,"2-month horizon (M5)"=3,"2-month horizon (M6)"=3,"24-month horizon (M5)"=3,"24-month horizon (M6)"=3)) %>%
   row_spec(row=1,hline_after = T) %>%
   row_spec(1,bold=T)
 decomp.m5.m6
@@ -281,8 +281,8 @@ This section employs correlation to determine the symmetry or otherwise of the i
 
 ```{r cor-m2-m3,echo=F}
 cor.m2.m3=data.frame(read.csv("TABLES/table4.csv",header = F,check.names = F)) %>%
-kable(format="latex",longtable=T,booktabs=T,caption="\\bfseries{Correlation of inflationary shocks: M2 and M3.}",escape=F,linesep="",col.names=NULL,align=c("l","c","c","c","c","c","c","c","c")) %>%
-kable_styling(latex_options = c("basic"),full_width=T,font_size=9) %>%
+kable(format="latex",longtable=F,booktabs=T,caption="\\bfseries{Correlation of inflationary shocks: M2 and M3.}",escape=F,linesep="",col.names=NULL,align=c("l","c","c","c","c","c","c","c","c")) %>%
+kable_styling(latex_options = c("basic","hold_position"),full_width=T,font_size=9) %>%
   pack_rows("Panel A: Correlation of domestic inflationary shocks (M2)",1,9,hline_after=T,indent=FALSE) %>%
   pack_rows("Panel B: Correlation of domestic inflationary shocks (M3)",10,9,hline_after=T,latex_align = "l",indent=FALSE,hline_before=T) %>%
   row_spec(1,bold=T) %>%
@@ -291,11 +291,12 @@ cor.m2.m3
 ```
 
 Table \@ref(tab:cor-m5-m6) is a report about the correlation estimates of M5 and M6 in order to compare the period before and after the birth of WAMZ. It is clear that creation of WAMZ does not lead to the symmetry of shocks across the ECOWAS countries as there is no strongly positive correlation estimate for model M6 . Even considering China as one the global players does not make the domestic shocks symmetric as none of the correlation estimates of M7 is strongly positive.
+ 
 
 ```{r cor-m5-m6,echo=F}
 cor.m5.m6=data.frame(read.csv("TABLES/table5.csv",header = F,check.names = F)) %>%
-kable(format="latex",longtable=T,booktabs=T,caption="\\bfseries{Correlation of inflationary shocks: M5 and M6.}",escape=F,linesep="",col.names=NULL) %>%
-kable_styling(latex_options = c("basic"),full_width=T,font_size=9) %>%
+kable(format="latex",longtable=F,booktabs=T,caption="\\bfseries{Correlation of inflationary shocks: M5 and M6.}",escape=F,linesep="",col.names=NULL) %>%
+kable_styling(latex_options = c("basic","hold_position"),full_width=T,font_size=9) %>%
 pack_rows("Panel A: Correlation of domestic inflationary shocks (M5)",1,9,hline_after=T,indent=FALSE) %>%
   pack_rows("Panel B: Correlation of domestic inflationary shocks (M6)",10,9,hline_after=T,latex_align = "l",indent=FALSE,hline_before=T) %>%
   row_spec(1,bold=T) %>%
