@@ -1,0 +1,41 @@
+---
+output: 
+ pdf_document:
+  includes:
+   in_header: COVER_LETTER_preamble.tex
+urlcolor: blue
+linkcolor: blue
+geometry: "a4paper,top=2.5cm,bottom=2cm,left=2.5cm,right=2cm"
+---
+\large
+\parskip20pt 
+\thispagestyle{empty}
+Dear Editor,
+
+We wish to submit an original research article entitled “Vision 2020: ECOWAS Common Currency, a Mirage or Possibility?” for consideration by *South African Journal of Economics.*
+
+
+We confirm that this paper is original and has not been published elsewhere, nor is it currently under consideration for publication elsewhere.
+
+Economic Community of West African States (ECOWAS) members have been working towards creating a monetary union since 1975. ECOWAS members adopted a resolution in 2007, which introduced ECOWAS Vision 2020. This study attempts to provide the economic reasons why this vision is a mirage or possibility. Unlike the previous studies, the interaction of global, regional and domestic inflation rates is used to assess the feasibility of actualizing ECOWAS Vision 2020 aimed at creating a monetary union. With the help of Structural Vector Autoregression (SVAR) using Blanchard and Quah decomposition over the sample of 1975:05 to 2018:08, questions pertaining to symmetry of inflationary shocks, dominance of regional shocks and response of domestic inflation to a given shock are assessed. Impulse response, variance decomposition as well as correlation of domestic inflationary shocks are employed to assess whether this vision is a mirage or possibility. It is found that although the vision is a mirage, creating a common currency can serve as a shock absorber against the negative spillovers of global and regional inflationary shocks. The study recommends that Nigeria can be part of the WAEMU and that more coordination among ECOWAS members is needed before actualizing this vision.
+
+Thank you for your considerations of this manuscript.
+
+Yours sincerely,
+
+
+Dr. Irfan Civcir 
+
+`r format(Sys.time(), "%A, %B %d, %Y")`
+
+Ankara University,
+\parskip2pt
+
+Faculty of Political Sciences,
+
+06590 Cebeci-ANKARA/TURKEY,
+
+Phone: +90 312 5951287,
+
+Email: civcir@politics.ankara.edu.tr
+

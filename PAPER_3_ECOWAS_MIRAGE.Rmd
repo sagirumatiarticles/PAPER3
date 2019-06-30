@@ -1,0 +1,323 @@
+---
+title: 'ECOWAS Common Currency, a Mirage or Possibility?'
+author: "Sagiru Mati^1^, Irfan Civcir^2^*, Hüseyin Özdeşer^3^"
+output:
+ #bookdown::word_document2:
+  #  reference_docx: REF_DOCX/PAPER4_ref.docx
+ bookdown::pdf_document2:
+    latex_engine: xelatex
+    keep_tex: true
+    df_print: kable 
+    toc: FALSE
+    includes:
+      in_header: PAPER_3_ECOWAS_MIRAGE_preamble.tex
+    number_sections: yes
+linkcolor: blue
+link-citations: yes
+bibliography: REFERENCES/MASTER_REFERENCES.bib
+csl: CSL/apa.csl
+urlcolor: blue
+citecolor: green
+font_size: 12pt
+fig_caption: yes
+pdf_crop: true
+geometry: "a4paper,top=2.5cm,bottom=2.5cm,left=3.5cm,right=2.5cm"
+---
+
+``` {r setup,echo=FALSE,include=T, comment=NULL,warning=F}
+knitr::opts_chunk$set(echo = FALSE)
+suppressMessages(suppressWarnings(library(officedown)))
+suppressMessages(suppressWarnings(library(here)))
+suppressMessages(suppressWarnings(library(knitr)))
+suppressMessages(suppressWarnings(library(magrittr)))
+suppressMessages(suppressWarnings(library(dplyr)))
+suppressMessages(suppressWarnings(library(kableExtra)))
+suppressMessages(suppressWarnings(library(png)))
+suppressMessages(suppressWarnings(library(base)))
+suppressMessages(suppressWarnings(library(stringr)))
+suppressMessages(suppressWarnings(library(readxl)))
+suppressMessages(suppressWarnings(library(data.table)))
+suppressMessages(suppressWarnings(library(readr)))
+suppressMessages(suppressWarnings(library(tidyr)))
+#kable SHORT CUTS
+
+
+#kable1=function() {kable(format="latex",booktabs=F,escape=F) %>%
+#kable_styling(latex_options = c("basic","hold_positon","scale_down")) %>%
+ # footnote(general_title = "",footnote_as_chunk=T,escape = F) %>%
+  #row_spec(0,bold=T)}
+```
+
+\thispagestyle{empty}
+
+^1^Faculty of Economics and Administrative Sciences, Near East University, North Cyprus, sagirumati@gmail.com
+
+^2^Faculty of Polical Science, Ankara University, Turkey, civcir@politics.ankara.edu.tr.
+
+^3^Faculty of Economics and Administrative Sciences, Near East University, North Cyprus, huseyinozdeser@neu.edu.tr
+
+
+ 
+\begin{center} 
+
+\section*{ABSTRACT}
+
+\end{center}
+
+
+\newacro{ECOWAS}{Economic Community of West African States} \ac{ECOWAS} members have been working towards creating a monetary union since 1975. \ac{ECOWAS} members adopted a resolution in 2007, which introduced ECOWAS Vision 2020. This study attempts to provide the economic reasons why this vision is a mirage or possibility. Unlike the previous studies, the interaction of global, regional and domestic inflation rates is used to assess the feasibility of actualizing \ac{ECOWAS} Vision 2020 aimed at creating a monetary union. With the help of \newacro{SVAR}{Structural Vector Autoregression} \ac{SVAR} using \newacro{BQ}{Blanchard and Quah} \ac{BQ}decomposition over the sample of 1975:05 to 2018:08, questions pertaining to symmetry of inflationary shocks, dominance of regional shocks and response of domestic inflation to a given shock are assessed. Impulse response, variance decomposition as well as correlation of domestic inflationary shocks are employed to assess whether this vision is a mirage or possibility. It is found that although the vision is a mirage, creating a common currency can serve as a shock absorber against the negative spillovers of global and regional inflationary shocks. The study recommends that Nigeria can be part of the WAEMU and that more coordination among ECOWAS members is needed before actualizing this vision.
+
+
+
+
+**Keywords:** Monetary Union, Optimal Currency Area, ECOWAS, WAEMU, SVAR, \ac{BQ} Decomposition.
+
+**JEL classification:** C13, E31, E52, E58, F33, F42.
+
+\vskip60pt
+
+\hrulefill
+
+*Corresponding Author: civcir@politics.ankara.edu.tr
+\clearpage
+ \pagestyle{plain}
+\pagenumbering{arabic}
+
+# Introduction
+
+After establishment of the \newacro{EMU}{European Monetary Union} \ac{EMU} which led to the creation of Euro as single currency, several groups of countries attempt to follow suit. One of these groups of countries is Economic Community of West African States (ECOWAS, or it's French and Portuguese abbreviation CEDEAO)^[ECOWAS official languages are English, French and Portuguese.] , which is similar to the European Union (EU) in terms of structure and operation. After the Treaty of Lagos signed on 28th May, 1975, members of ECOWAS have been working towards creating a common central bank, single currency similar to Euro to be called Eco, and unified monetary policy. In order to accomplish this objective, ECOWAS in June 2007 adopted a resolution, which introduced ECOWAS Vision 2020. Some economic criteria known as convergence criteria, similar to Maastricht Treaty of the EMU, are adopted in the name of *Decision A/DEC.17/12/01* in December, 2001. These criteria were modified in *Supplementary Act A/SA/4/06/12* of 29^th^ June, 2012 on convergence agreement and macroeconomic stability between ECOWAS Member States [@ECOWAS2017]. The Convergence criteria contain two categories, primary criteria and secondary criteria. The primary criteria stipulate that deficit-GDP ratio should be less than 3 per cent, annual average inflation rate less than 10 per cent, gross external reserves greater than 3 months of imports. The secondary criteria require  that debt-GDP ratio to be lower than 70 per cent, Central bank financing of the budget deficit should not be above 10 per cent of the previous year’s tax revenue, and variation of nominal exchange rate to be within the band of ±10 per cent. This study attempts to provide the economic reasons why this vision is a mirage or possibility. Towards this end, this study is grounded on the \newacro{OCA}{Optimum Currency Areas} \ac{OCA}, the theory developed by @mundell1961theory, @McKinnon1963 and @kenen1969theory to explain the economic conditions necessary for a beneficial monetary unification. 
+OCA is one of the theories used to assess the costs and benefits of forming or joining \newacro{MU}{monetary union} an MU [@BAYOUMI1997761; @capie2003monetary; @plasmans2006dynamic], or the nature of macroeconomic shocks among the members of an MU [see for example, @de2000monetary; @khamfula2004southern; @Chow2003; @Zhao2009; @lee2012east; @Regmi2015; @LEGRAND2014136]. Some of the conditions proposed by \ac{OCA} for a beneficial monetary unification include symmetry of shocks and similar business cycle among the members of the \ac{MU}.  The higher the compatibility of an MU with \ac{OCA}, the larger the benefit to all members, and vice versa [@de2000monetary]. The magnitude of benefit or cost of joining an MU depends on the frequency, nature, and transmission of the shocks which impact the \ac{MU}. If the nature of the shocks is symmetric (asymmetric), the benefit (cost) of joining \ac{MU} is substantial [@plasmans2006dynamic].
+
+Despite this giant vision, there exist very few empirical studies to examine the possibility or otherwise of actualizing this vision. Moreover, these studies employ other methodologies than the \ac{BQ} decomposition and focus on \newacro{CFZ}{CFA Franc Zone} \ac{CFZ}^[Monetary union of Francophone countries whose economies are linked to the French franc.] and \newacro{WAMZ}{West African Monetary Zone} \ac{WAMZ}, see for example [@hefeker2010fiscal; @TSANGARIDES20081261; @masson2001monetary; @Fielding2005]. It differs from other similar studies in terms of methodology, variables, data frequency and sample size. This paper attempts to empirically establish whether the \ac{ECOWAS}’s vision 2020 is a mirage or possibility in the light of OCA. For this the study attempts to answer the following research questions; i. Do members of the ECOWAS meet the primary and secondary convergence criteria?; ii. Are the shocks in ECOWAS countries symmetric?; iii. Is the members’ source of shocks regional?; iv. Are the responses of ECOWAS countries to a given shock similar? If the answer to each of the above set of questions is no (yes), then the implication is that ECOWAS’s Vision 2020 is a mirage (possibility). Having either yes or no as an answer to the individual question implies different conclusion from having either yes or no to all the questions. Having yes (no) as an answer to the second and fourth questions, individually or collectively, implies that the ECOWAS members are ready (not ready) for a single monetary policy. On the other hand, having yes (no) as an answer to question 3 signifies that the ECOWAS members could benefit (suffer) from using a single currency. 
+
+# Overview of ECOWAS
+ 
+The organization currently comprises fifteen (15) member countries.  They include Benin (BEN), Burkina Faso (BFA), Cote d’Ivoire (CIV), Guinea Bissau (GNB), Mali (MLI), Niger (NER), Senegal (SEN), Togo (TGO), the Gambia (GMB), Ghana (GHA), Guinea (GUI), Nigeria (NGA), Sierra Leone (SLE), Cabo Verde (CPV) and Liberia (LBR), see Masson and Pattillo (2001). The West African Economic and Monetary Union (WAEMU) is made up of the first eight members, while the last two are not part of any monetary union. The remaining members comprise the West African Monetary Zone (WAMZ)^[WAEMU and WAMZ were established in 1994 and 2000 respectively.]. Only three Member States, namely Guinea, Liberia and Nigeria met the first of the primary criteria (deficit-GDP ratio less than 3 per cent) as opposed to six in 2015, which were Benin (6.2%), the Gambia (9.5%), Ghana (10.9%) Niger (6.1%), Sierra Leone (6.4%) and Togo (8.5%). As for the second of the primary criteria (annual average inflation less than 10 per cent), only Ghana, Nigeria, and Sierra Leone recorded an inflation rate of more than ten percent (10%) in 2016. In 2015, all ECOWAS members other than Ghana recorded an inflation rate of less than 10%. The Anglophone countries recorded higher inflation rates. The higher inflation rates could be attributable to the depreciation of the currencies of these members in 2015 and 2016. The target of the third primary criterion (gross external reserves greater than 3 months of imports) was previously six months of imports, but was reduced to three months of import in 2015. In 2016, only the Gambia (2.4 months), Ghana (2,8 months) and Guinea (1.4 months) did not meet this criterion. Nigeria (6.5 months) and Cabo Verde (6.4 months) had the largest coverage of imports in both 2015 and 2016 [@ECOWAS2017].
+
+Only Cabo Verde (128.6%), The Gambia (117.3%) and Togo (79.4%) have not met the first of the secondary criteria (debt-GDP ratio lower than 70 per cent). Guinea, Nigeria, the Gambia and Sierra Leone did not meet the second of the secondary criteria (Central bank financing of deficit above 10 per cent of the previous year’s tax revenue). Regarding the third secondary criterion (variation of nominal exchange rate within the band of ±10 per cent), three currencies in 2016, compared to two in 2015, experienced an average variation outside the ±10% band. The affected currencies are Guinea franc (16.4%), Nigerian naira (23.5%) and Sierra Leone leone (19.1%) as reported by [@ECOWAS2017].
+
+# Literature review
+
+The preconditions of forming an MU guided by the OCA include the existence of symmetry of shocks across all the members [@mundell1961theory], open economies [@kenen1969theory] as well as well-diversified economies [@McKinnon1963]. @hsu2010common and @Regmi2015 highlight the common empirical methodologies for operationalizing the OCA: @agbeyegbe2008feasibility, for example, assesses the *convergence criteria* of the MU candidates, @Chow2003 assesses the nature of (a)symmetry of macroeconomic shocks, analyzing the correlation of macroeconomic variables of the potential MU members [see for example, @RANA2007711].
+
+Employing fractional integration and cointegration as econometric methodology, @ALAGIDEDE2012460 find the existence of significant heterogeneity in the behavior of inflation among the WAMZ countries. They suggested the enhancement of policy coordination among central banks the members before signing the treaty for a single currency. In contrast to other studies, @debrun2005monetary develop and calibrate a model in which the incentives to join an MU is provided by the negative spillover from the independent monetary policy. They identified lack of fiscal convergence as the main hindrance of actualizing an MU in West Africa. Their findings are in contradiction with the conclusions of other studies, which identify that asymmetric shocks or low level of regional trade as the main constraints of establishing the MU. Correlation analysis was employed by @Fielding2004 to establish that monetary integration among the members of \ac{CFZ}led to the improvement of macroeconomic integration. After applying both soft and hard clustering algorithms on some variables, selected based on OCA and convergence criteria, @TSANGARIDES20081261 examine the suitability of an MU among WAMZ as well as ECOWAS countries. The outcome of their cluster analysis shows significant dissimilarities among the MU candidates, especially the WAMZ countries. They further reveal that it would be costly for Ghana and Nigeria to be in WAMZ because they are ‘singletons’. @hefeker2010fiscal examines how fiscal policy, structural reform, and monetary union interact. His conclusions reveal that symmetric monetary policy may play a role in influencing fiscal authorities to adopt a distortionary fiscal policy, which subsequently reduces their structural reform effort. He further argues that asymmetric monetary union causes further polarization among the member countries. @gros1998european and @chown2003history provide the historical account of monetary arrangement in the world, [@Kunroo2015] explores the most recent literature survey on OCA.
+
+In the light of the foregoing literature review, it could be safe to argue that no study employs OCA in conjunction with BQ decomposition to analyze the mirage (possibility) of forming an MU among the ECOWAS members. The studies that utilize this methodology mostly focus on the Asian countries [see, @Chow2003; @hsu2010common; @lee2012east] and the European countries [see @eichengreen1996asia; @Boivin2008; @LEGRAND2014136]. It is believed that employing BQ decomposition can provide further insight into the mirage or possibility of the ECOWAS members to form a full-fledged MU. 
+
+
+# Data and Methodology
+
+The monthly series of \newacro{CPI}{Consumer Price Index} \ac{CPI}^[The base year is 2010]  which is used to calculate the inflation rate is obtained from International Financial Statistics (IFS). Annual percentage change in CPI measures the inflation level^[$π_t^i=(lnX_t-lnX_{t-12}) \times 100$] . The CPI monthly series from May 1975 to August, 2018 is employed for the analysis. The choice of sample period reflects the date Treaty of Lagos was signed.
+
+\newacro{GI}{Global Inflation}\ac{GI} and \newacro{RI}{Regional Inflation} \ac{RI} are calculated from the weighted averages of Global CPI and Regional CPI respectively^[$w_{i}=\frac{\overline{X}_t}{\sum_{1}^{n}\overline{X}_t} \text{, } r_t=\sum_1^nw_{it}X_{it}\text{, } g_t=\sum_1^nw_{it}X_{it}$, where $w_i$, $r_t$ and $g_t$ stand for the individual weight, regional CPI, and global CPI respectively. $X_t$ is the CPI and $\overline{X}_t$ is the mean of the CPI, and  n  is the number of countries considered in the calculation of regional or global CPI]. The United States of America (USA), United Kingdom (UK), France and China are taken as global economies, because these economies exert influence on the ECOWAS countries. Some studies consider the USA to represent the global economy [see for example @Chow2003; @Regmi2015]. Due to a lack of CPI data for some ECOWAS countries over the full sample, only eight ECOWAS countries are considered in this study. These countries include Nigeria (NGA), Gambia (GMB), Ghana (GHA), Cote d’Ivoire (CIV),  Burkina Faso (BFA), Niger (NER), Senegal (SEN) and Togo (TGO). The values of CPI for Togo are missing over the range of 1995:1 and 1995:07. However, we use the forecast values from an ARIMA(2,1,2) model to create the missing values as it is important to include Togo as part of the analysis because it is one of the founders of ECOWAS. The first three countries are members of the WAMZ, and the rest are member of the WAEMU.
+For the data analysis and estimation, this study uses long-run restrictions to identify the structural global shocks (GS), regional shocks (RS) and domestic shocks (DS). This form of identification is based on @Blanchard1989 decomposition which is also adopted by @Chow2003, @hsu2010common and @Regmi2015 . Specifically, the model involves estimating the following equation;
+\small
+\begin{equation}
+\begin{bmatrix} 1 & \xi_{12} & \xi_{13}\\ 
+\xi_{21} & 1 & \xi_{23}\\
+\xi_{31} & \xi_{32} & \xi_{33}
+\end{bmatrix}
+\begin{bmatrix} \pi^{g}\\
+\pi^{r}\\
+\pi^{d}
+\end{bmatrix}=\begin{bmatrix}\lambda_{11}(L) & \lambda_{12}(L) & \lambda_{13}(L)\\
+\lambda_{21}(L) & \lambda_{22}(L) & \lambda_{23}(L)\\
+\lambda_{31}(L) & \lambda_{32}(L) & \lambda_{33}(L) 
+\end{bmatrix}
+\begin{bmatrix}\pi_{t-1}^{g}\\ \pi_{t-1}^{r}\\ \pi_{t-1}^{g}
+\end{bmatrix}+
+\begin{bmatrix}\gamma_{11} & 0 & 0\\
+0 & \gamma_{22} & 0\\
+0 & 0 & \gamma_{33}
+\end{bmatrix}
+\begin{bmatrix}d_{1t}\\ d_{2t}\\ d_{3t}
+\end{bmatrix} +
+\begin{bmatrix} \varepsilon_{1t}\\ \varepsilon_{2t}\\ \varepsilon_{3t}
+\end{bmatrix}
+(\#eq:VAR)
+\end{equation}
+
+\large
+ 
+Equation \@ref(eq:VAR) can be represented compactly as
+
+\begin{equation}
+\Xi X_{t}=\Lambda(L)X_{t-1}+\Gamma D_{t} +\varepsilon_{t} (\#eq:stable-VAR)
+\end{equation}
+	
+Where $\Xi$ represents the matrix of coefficients of the endogenous variables, $\Lambda$ is the matrix of coefficients of the lagged endogenous variables, and $\Gamma$ is the matrix of coefficients of the dummy variables.
+
+Or, in reduced form:
+
+\begin{equation}
+X_{t}=\Psi X_{t-1}+\varphi D_{t}+e_{t} (\#eq:reduced-VAR)
+\end{equation}
+
+
+Where $\Psi=\Xi^{-1} \Lambda (L)$, $\varphi=\Xi^{-1} \Lambda \Gamma$  and $e_t=\Xi^{-1} \varepsilon_{t}$.
+
+Equation \@ref(eq:stable-VAR) is a stationary VAR with vector $X_t$ containing the variables, specifically, global inflation (GI) $π^g$, regional inflation (RI) $π^r$, and domestic inflation (DI) $π^d$. The set of dummy variables is represented by $D_t$, which captures the break dates for GI, RI and DI.  The Greek letters $\Xi$ and $\Lambda$ are $\mathbb{R}^{n×n}$ matrices of parameters. Similarly, $\varepsilon_t$ is a vector containing the inflationary shocks, GS, RS and DS. Equation \@ref(eq:stable-VAR) provides the compact representation of equation \@ref(eq:VAR) and equation \@ref(eq:reduced-VAR) is the reduced form VAR. 
+
+Using Wold representation, the vector moving average of equation \@ref(eq:VAR) can be represented as follows [@enders2015applied].
+
+\begin{equation}
+\pi^{g}=\sum_{q=0}^{\infty}\lambda_{11}(q) \varepsilon^{g}_{t-q}+\sum_{q=0}^{\infty}\lambda_{12}(q) \varepsilon^{r}_{t-q}+\sum_{q=0}^{\infty}\lambda_{13}(q) \varepsilon^{d}_{t-q} (\#eq:G-SVAR)
+\end{equation}
+\begin{equation}
+\pi^{r}=\sum_{q=0}^{\infty}\lambda_{11}(q) \varepsilon^{g}_{t-q}+\sum_{q=0}^{\infty}\lambda_{12}(q) \varepsilon^{r}_{t-q}+\sum_{q=0}^{\infty}\lambda_{13}(q) \varepsilon^{d}_{t-q} (\#eq:R-SVAR)
+\end{equation}
+\begin{equation}
+\pi^{d}=\sum_{q=0}^{\infty}\lambda_{11}(q) \varepsilon^{g}_{t-q}+\sum_{q=0}^{\infty}\lambda_{12}(q) \varepsilon^{r}_{t-q}+\sum_{q=0}^{\infty}\lambda_{13}(q) \varepsilon^{d}_{t-q} (\#eq:D-SVAR)
+\end{equation}
+	 
+Or compactly as
+
+\begin{equation}
+\begin{bmatrix}
+\pi^{g}\\
+\pi^{r}\\
+\pi^{d}
+\end{bmatrix}=
+\begin{bmatrix}
+\Omega_{11} & \Omega_{12} & \Omega_{13}\\
+\Omega_{21} & \Omega_{22} & \Omega_{23}\\
+\Omega_{31} & \Omega_{32} & \Omega_{33} 
+\end{bmatrix} \times 
+\begin{bmatrix}
+\varepsilon^{g}_t\\
+\varepsilon^{r}_t\\
+\varepsilon^{d}_t
+\end{bmatrix} 
+(\#eq:BMA)
+\end{equation}
+
+Where  $\Omega_{ij}=\Lambda_{ij}(L)$ is a lag operator polynomial; therefore, equation \@ref(eq:BMA) can be represented compactly as 
+
+\begin{equation}
+X_{t}=\Omega (L) \varepsilon_t
+(\#eq:compact-BMA)
+\end{equation}
+
+For equations \@ref(eq:BMA) and \@ref(eq:compact-BMA) to be valid, the endogenous variables have to be stationary and that the structural shocks have unit variance and are uncorrelated [@enders2015applied; @juselius2006cointegrated; @lutkepohl2004applied]. The restrictions needed for identifying this system of the equations involve the following small country assumptions^[These assumptions are the same as in @Chow2003, @hsu2010common, and @Regmi2015]; i. domestic economies are small open economies and domestic inflation has no contemporaneous and lagged effects on global inflation ii. Idiosyncratic shocks of domestic economies have zero long-run effect on both regional and global economies iii. Regional shocks have no long-run impact on the global economy. Given these small country assumptions, Equation \@ref(eq:VAR) is restricted such that $\lambda_{13} (L)=0$, so  that domestic inflation does not have both contemporaneous and lagged effects on the global inflation. Three restrictions^[For just-identified VAR system, number of restrictions (r) is given by r=(n^2-n)/2, where n is the number of variables in the system. Given 3 variables, the required number of restriction is 3. ]  need to be imposed in order to identify equation \@ref(eq:VAR), hence the long-run restriction such that $\Omega_{12}=\Omega_{13}=\Omega_{23}=0$ in equation \@ref(eq:BMA) is required to recover the shocks.
+
+# Empirical Results
+
+For the full sample of 1975:05 to 2018:08, all the inflation variables (GI, RI and DI) appear to be I(0) except the global inflation, Nigerian inflation and Gambian inflation, based on formal unit root tests developed by @10.2307/2336182 and @Dickey1979. However, when structural breaks are taken into account, these integrated inflation variables become stationary. The structural breaks occurs at various dates, so a dummy variable is generated to capture each break date for each inflation variable, 1 is assigned for the specific break date and 0 otherwise^[The SB dates for the global inflation is 1981:11, and 1987:01 and 1996:07 for the Gambia and Nigeria respectively]. Formally $D_{it}=1$ for $t=i$ and $D_{it}=0$ for $t\neq i$, where $i$ is the break date.  For the sake of comparison, four subsamples are considered; two samples capturing the period before and after establishment of WAEMU and other two samples covering the period before and after creation of WAMZ. New definition of global CPI, which includes China, is also used for the samples after creation of WAEMU and WAMZ because China becomes a major global player in recent years.  VAR with two lags is estimated for all the countries in the form of equation \@ref(eq:reduced-VAR)^[The lag selection is guided by the number of lags necessary to make the VAR stable and whiten its error.] . All the VAR models meet the diagnostic requirements of homoscedasticity, non-autocorrelation and stability^[The diagnostic results are not reported in order to save space.]. The models used in this study are defined in Table \@ref(tab:tab-def)^[To save space, only comparison of models 2 and 3 and that of models 5 and 6 are reported. We also determine that inclusion of China as part of the global variable does make any significant difference.]
+
+```{r tab-def,echo=F}
+tab.def=data.table(read.csv("TABLES/table1.csv",header = F),check.names = F) %>%
+  kable(format="latex",booktabs=T,caption="Sample, Model and Definition of Global Variable",escape=F,col.names = NULL,linesep="") %>%
+kable_styling(latex_options = c("basic","hold_positon","scale_down")) %>%
+  footnote(general="Note: a, b, c, d, and e stand for full sample, period before WAEMU, period after WAEMU,  period before WAMZ and period after WAMZ respectively.", general_title = "",footnote_as_chunk=T) %>%
+  add_header_above(c("Model name"=1,"Sample"=1,"Definition of global CPI"=1),bold=T) 
+tab.def
+  
+```
+
+\FloatBarrier
+
+## The Impulse Response of Domestic Inflation
+
+The purpose of this section is to observe how domestic inflation responds to both RS and GS similar to @Regmi2015. If the members of a monetary union respond to a given shock in a similar way, then common monetary policy could be used to address the consequence of the shocks, otherwise, each member country has to use its own monetary policy to address the shock. In essence, if the members' responses to a given shock are similar, then monetary unification is beneficial, otherwise, it is costly. 
+
+In order to gain insight into the responses of domestic economies to the regional and global shocks, impulse responses of M2 are compared with those of M3. Figure \@ref(fig:FigM2M3) reports the impulse responses of M2 and M3, while Figure \@ref(fig:FigM5M6) contains the impulse responses of M5 and M6. The top part of these figures represents the responses of domestic economies to global shocks, while the responses of domestic economies to regional shocks are depicted at the bottom of these figures. For simplicity of reference, M2-G implies sub-figure of M2 model showing response of domestic economies to global shocks, and M3-R signifies sub-figure of M3 model showing response of domestic economies to regional shocks.
+
+The first task is to compare the impulse responses of models before the establishment of WAEMU (M2) and WAMZ (M5) with the corresponding models representing period after their establishment. To this end, M2 is compared with M3, while M5 is compared with M6. Before the establishment of WAEMU, M2-G shows the response of Burkina Faso to global shocks could be as high as 1.72 and the response of Niger to global shock could be as low as -1.38. On the other hand, M3-G shows that the highest response to global shocks after creation of WAEMU is 0.78 recorded by Guinea Bissau and the lowest is -0.06 recorded by Niger, indicating a fall in the magnitude of the responses by 55 per cent and 96 per cent respectively. In addition to this, M2-G and M3-G indicate that the shocks disappear at shorter horizon in the latter model than in the former. As indicated by M2-R and M3-R, the level of responses to regional shocks are lower after WAEMU creation but shocks die out faster before the establishment of the WAEMU. Moreover, the paths of the responses to global shocks are similar except for Burkina Faso, Niger and Gambia for both M2 and M3, and the paths of responses to regional shocks are also similar except for Ghana in M2 and except for Ghana, Nigeria and the Gambia in M3. 
+ 
+
+```{r FigM2M3,fig.cap="Response of Domestic Economies to Regional and Global Shocks (M2 and M3)",out.width="98%",out.height="90%",fig.pos='ht!'}
+include_graphics("FIGURES/figure1.pdf")
+
+```
+
+
+Figure \@ref(fig:FigM5M6) attempts to compare M5 and M6 in order to find out the dynamics of the responses before and after the establishment of the WAMZ. Based on the impulse responses, period after the creation of the WAMZ has not only shown lower responses of domestic economies to both the global and regional shocks but also faster disappearance of both the shocks. Additionally, the paths of the responses to global shocks are similar except for Burkina Faso, Niger and the Gambia for both M5 and M6, and the paths of responses to regional shocks are also similar except for Nigeria and the Gambia in M5. 
+
+
+```{r FigM5M6,out.width="98%",out.height="90%",fig.align='center',fig.cap="Response of Domestic Economies to Regional and Global Shocks (M5 and M6)",fig.pos='ht'}
+include_graphics("FIGURES/figure2.pdf")
+```
+
+\FloatBarrier
+
+## Variance Decomposition
+
+The idea is that a country should join an MU if the regional shocks dominate, opt for autonomous monetary policy if the shocks are idiosyncratic, or peg its currency against the global currency if the forecast error variance is dominated by the global shocks [@Chow2003; @Regmi2015]
+
+Tables \@ref(tab:decomp-m2-m3) and \@ref(tab:decomp-m5-m6) report the 2-month-ahead and 24-month-ahead variance forecast error of the inflation models. Comparison of M2 and M3 is presented in Table \@ref(tab:decomp-m2-m3), M5 and M6 in Table \@ref(tab:decomp-m5-m6). Again for easy reference, M2-2H denotes 2-month horizon variance decomposition of model M2, while M3-24H represents 24-month horizon variance decomposition of model M3 and so on. 
+
+Comparison of M2 and M3 in Table \@ref(tab:decomp-m2-m3) provides a greater insight. The M2-2H of the table shows that only Cote D’Ivoire, Niger and Togo had some significant magnitudes of RS before the birth of WAEMU. Their RS magnitudes were 31.07, 67.05 and 50.78 (2-month horizon) and 44.77, 55.92 and 40.47 (24-month horizon) respectively. However, the scenario changed after the birth of WAEMU as only the non-WAEMU Anglophone countries are not RS-dominated. The RS for Ghana, the Gambia and Nigeria after WAEMU creation are 0.24, 13.86 and 26.26 (2-month horizon) and 26.36, 9.68 and 81.59 (24-month horizon) respectively. The implication is that most members became suitable for the common currency after the creation of the common currency.
+
+
+```{r decomp-m2-m3,echo=F}
+decomp.m2.m3=data.frame(read.csv("TABLES/table2.csv",check.names = FALSE,na ="empty",header = F,colClasses = "character")) %>%
+kable(format="latex",booktabs=T,caption="Variance decomposition of inflation, M2 and M3",escape=F,linesep="",col.names = NULL) %>%
+kable_styling(latex_options = c("basic","hold_position"),full_width=T,font_size=9) %>%
+add_header_above(c(" "=1,"2-month horizon (M2)"=3,"2-month horizon (M3)"=3,"24-month horizon (M2)"=3,"24-month horizon (M3)"=3),bold = T) %>%
+  row_spec(row=1,hline_after = T) %>%
+  row_spec(1,bold=T)
+decomp.m2.m3
+```
+ 
+To make comparison between the period before and after the birth of WAMZ, Table \@ref(tab:decomp-m5-m6) reports the variance decomposition of M5 and M6. According to M6-2H and M6-24H, Ghana, the Gambia and Nigeria are still not RS-dominated even after the creation of WAMZ, as their RS magnitudes are 45.70, 0.49 and 1.71 (2-month horizon) and 26.94, 0.30 and 5.78 (24-month horizon). This means that Anglophone countries are not ready for the common currency.
+
+```{r decomp-m5-m6,echo=F}
+decomp.m5.m6=data.frame(read.csv("TABLES/table3.csv",na="empty",skipNul = T,check.names = FALSE,header = F)) %>%
+
+kable(format="latex",booktabs=T,caption="\\bfseries{Variance decomposition of inflation, M5 and M6}",escape=F,col.names = NULL,linesep="") %>%
+kable_styling(latex_options = c("basic","hold_position"), font_size=9,full_width=T) %>%
+  add_header_above(c(" "=1,"**2-month horizon (M5)**"=3,"2-month horizon (M6)"=3,"24-month horizon (M5)"=3,"24-month horizon (M6)"=3)) %>%
+  row_spec(row=1,hline_after = T) %>%
+  row_spec(1,bold=T)
+decomp.m5.m6
+```
+
+\FloatBarrier
+
+## Correlation of domestic shocks
+
+This section employs correlation to determine the symmetry or otherwise of the inflationary shocks. The residuals from the SVAR for each country are taken to be the shocks; DS, RS and GS. If the correlation is zero, negative or small, then the shocks are asymmetric, but if they are strongly positive, then they are said to be symmetric [@hsu2010common]. The correlation estimates of RS and GS are not reported as it is observed that they are all strongly positive. Table \@ref(tab:cor-m2-m3) reports the correlation estimates of models M2 and M3. According to Panel A, the correlation between Niger and Burkina Faso is strongly negative before the establishment of WAEMU, but this figure has drastically fallen in absolute terms from 0.58 to 0.07 after the birth of WAEMU as shown in Panel B. The correlation between Burkina Faso and Togo, between Cote D’Ivoire and Togo, between Niger and Togo and between Senegal and Togo changed from -0.28, 0.04, 0.27, -0.13 to -.36, -0.32 , -0.34 and -0.47 respectively as shown in Panel A and Panel B. The correlation estimates of model M4 as reported in Panel C are similar to that of model M3, indicating little difference even when China is considered as part of the global player. 
+
+
+```{r cor-m2-m3,echo=F}
+cor.m2.m3=data.frame(read.csv("TABLES/table4.csv",header = F,check.names = F)) %>%
+kable(format="latex",longtable=T,booktabs=T,caption="\\bfseries{Correlation of inflationary shocks: M2 and M3.}",escape=F,linesep="",col.names=NULL,align=c("l","c","c","c","c","c","c","c","c")) %>%
+kable_styling(latex_options = c("basic"),full_width=T,font_size=9) %>%
+  pack_rows("Panel A: Correlation of domestic inflationary shocks (M2)",1,9,hline_after=T,indent=FALSE) %>%
+  pack_rows("Panel B: Correlation of domestic inflationary shocks (M3)",10,9,hline_after=T,latex_align = "l",indent=FALSE,hline_before=T) %>%
+  row_spec(1,bold=T) %>%
+  row_spec(10,bold=T) 
+cor.m2.m3
+```
+
+Table \@ref(tab:cor-m5-m6) is a report about the correlation estimates of M5 and M6 in order to compare the period before and after the birth of WAMZ. It is clear that creation of WAMZ does not lead to the symmetry of shocks across the ECOWAS countries as there is no strongly positive correlation estimate for model M6 . Even considering China as one the global players does not make the domestic shocks symmetric as none of the correlation estimates of M7 is strongly positive.
+
+```{r cor-m5-m6,echo=F}
+cor.m5.m6=data.frame(read.csv("TABLES/table5.csv",header = F,check.names = F)) %>%
+kable(format="latex",longtable=T,booktabs=T,caption="\\bfseries{Correlation of inflationary shocks: M5 and M6.}",escape=F,linesep="",col.names=NULL) %>%
+kable_styling(latex_options = c("basic"),full_width=T,font_size=9) %>%
+pack_rows("Panel A: Correlation of domestic inflationary shocks (M5)",1,9,hline_after=T,indent=FALSE) %>%
+  pack_rows("Panel B: Correlation of domestic inflationary shocks (M6)",10,9,hline_after=T,latex_align = "l",indent=FALSE,hline_before=T) %>%
+  row_spec(1,bold=T) %>%
+  row_spec(10,bold=T) 
+cor.m5.m6
+```
+
+# Discussion and policy implication 
+
+The result in the previous section will be compared against the research questions and then propose some policy options based on the comparison. As regard to the first question which asks whether the ECOWAS members meet primary and secondary convergence criteria, none of the countries has met these criteria. Hence, the answer to the first research question is no as the overview of these criteria in section 2 reveals. The second question tries to examine whether the domestic shocks are symmetric. The answer to this question is also no because the correlations of the domestic shocks as indicated by Tables \@ref(tab:cor-m2-m3) and \@ref(tab:cor-m5-m6) are not strongly positive. This indicates that shocks that hit the ECOWAS members are asymmetric. The third question attempts to test whether shocks in the ECOWAS countries are dominated by regional shocks. Variance decomposition in Tables \@ref(tab:cor-m2-m3) and \@ref(tab:cor-m5-m6) are used to address this question. All the ECOWAS countries apart from Cote D’Ivoire, Niger and Togo are not DS-dominated before the establishment of WAEMU as shown by M2-2H and M3-24H, but only Nigeria, the Gambia and Ghana are not RS-dominated after the creation WAEMU as indicated by M3-2H. However, longer horizon indicates that only Ghana and the Gambia are not RS-dominated as shown by M3-24H of Table \@ref(tab:decomp-m2-m3). This implies that Nigeria and all the WAEMU countries have become RS-dominated after the establishment of WAEMU. Furthermore, Nigeria, Ghana and the Gambia are not RS-dominated even after the establishment of WAMZ, as shown by M6-2H and M6-24H of Table \@ref(tab:decomp-m5-m6). The implication is that Nigeria, which has been RS-dominated after the creation of WAEMU, has ceased to be RS-dominated after the establishment of WAMZ. Impulse response analysis is used to answer the fourth question, which examines whether the responses of ECOWAS countries to a given shock are similar. According to M2-G, M2-R, M3-G, and M3-R of Figure \@ref(fig:FigM2M3), the paths of impulse responses are not similar for all the countries, even after the establishment of WAEMU and WAMZ. Although some countries have similar paths of response to a given shock (GS or RS) in terms of sign, the magnitudes of the responses to such shocks are different. 
+
+In essence, the answer to all the four questions are no, hence forming a monetary union among the ECOWAS members by 2020 is nothing but a mirage.  This nevertheless, the impulse response figures indicate that forming the WAEMU and WAMZ leads to lower magnitude of responses to both regional and global inflationary shocks.
+
+# Conclusion
+
+Previous studies conducted in this area focus on the other sources of shocks than inflation. It is argued that inflationary shocks are equally important in any decision about forming an MU [@ALAGIDEDE2012460]. After conducting analysis using ECOWAS Convergence Criteria, impulse response, variance decomposition and correlation of shocks, this study determines that ECOWAS vision 2020 aimed at forming a full-fledge monetary union is nothing but a mirage. On the other hand, impulse response analysis shows that creating a common currency among the WAEMU countries serves as an inflationary shock absorber as the magnitudes of responses to both regional and global inflationary shocks fall after the establishment of WAEMU. The analysis of variance decomposition further supports the advantage of creating a common currency, as all the WAEMU members and Nigeria have become RS-dominated since the inception of the WAEMU. However, the correlation analysis indicates that neither the creation of WAEMU nor WAMZ has led to significant improvement of symmetry of the domestic inflationary shocks
+
+The lack of support for all the hypotheses imply three conclusions: ECOWAS Vision 2020 is a mirage, single monetary policy could be costly for countries like Niger and Burkina Faso, and some countries like Gambia and Ghana can suffer from creating a common currency. However, creating common currency among the WAEMU members has not only reduced the magnitudes of impulse responses but also made regional shocks to dominate forecast error variance.  To sum up, even though the ECOWAS Vision 2020 is not realizable, creating a single currency among the WAEMU members help reduce the negative spillover effect of global and regional shocks. Based on the foregoing analysis, this study has recommended that Nigeria can join the WAEMU as it is RS-dominated, and that more coordination among the ECOWAS members is necessary before going for a pan-ECOWAS monetary unification.
+
+This study is not intended to be exhaustive in this area as still there are some issues that can be explored in future researches. Another study can be conducted using other forms of shocks than inflation, for example monetary shocks.
+
+# References{-}
+\noindent
+\leftskip1cm
+\parindent-1cm
