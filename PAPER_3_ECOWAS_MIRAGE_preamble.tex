@@ -1,3 +1,6 @@
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{6pt plus 1pt minus 0.2pt}{6pt plus 1pt minus 0.2pt}
+\titlespacing*{\subsection}{0pt}{6pt plus 1pt minus 0.2pt}{6pt plus 1pt minus 0.2pt}
 \usepackage[hang,flushmargin]{footmisc}
 %\usepackage{footmisx}
 %\usepackage{footnotebackref}
@@ -12,7 +15,9 @@
 \usepackage{booktabs}
 \usepackage{xcolor}
 \usepackage{natbib}
-\usepackage[font=bf,labelfont=bf]{caption} %to edit captions
+\usepackage[font=bf,labelfont=bf,skip=6pt]{caption} %to edit captions
+\abovecaptionskip=10pt
+\belowcaptionskip=10pt
 \usepackage[section]{placeins}
 \usepackage{setspace}
 \usepackage{chngcntr}
@@ -33,4 +38,4 @@
 %\usepackage[nolists]{endfloat} %to put all floats at the end of a document
 %\renewcommand{\efloatseparator}{\mbox{}} % change the spacing of endfloat
 \usepackage{flafter} %to put all floats after their first reference in a document
-
+\usepackage{threeparttable}
